@@ -53,7 +53,7 @@ foreach my $filename (@files)
 	next if ($type ne ".ini");
 	my $modname = substr($filename, 0, -4);
 	$modname = substr($modname, 3);
-	#next if ($modname eq "php$CURVERSION");
+	next if ($modname eq "php$CURVERSION");
 	print "Current mod is: $modname:\n";
 	if (system("apt install php$NEWVERSION-$modname > /dev/null 2>&1") != 0)
 	{
