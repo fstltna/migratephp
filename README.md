@@ -1,2 +1,2 @@
 # migratephp
-Upgrades your 7.4 version of php to 8.1
+Upgrades your 7.4 version of php to 8.1 - for Ubuntu/debian!
