@@ -6,7 +6,7 @@ use warnings;
 my $VERSION = "1.0";
 my $CURVERSION = "7.4";
 my $NEWVERSION = "8.1";
-my $CURPHPDIR = "/etc/apache2/mods-enabled";
+my $CURPHPDIR = "/etc/php/$CURVERSION/apache2/conf.d/";
 
 # Begin app
 print "migratephp version $VERSION\n";
@@ -49,10 +49,11 @@ foreach my $filename (@files)
 	# skip . and ..
 	next if ($filename =~ /^\.$/);
 	next if ($filename =~ /^\.\.$/);
-	my $type = substr($filename, -5);
-	next if ($type ne ".conf");
-	my $modname = substr($filename, 0, -5);
-	next if ($modname eq "php$CURVERSION");
+	my $type = substr($filename, -4);
+	next if ($type ne ".ini");
+	my $modname = substr($filename, 0, -4);
+	$modname = substr($modname, 3);
+	#next if ($modname eq "php$CURVERSION");
 	print "Current mod is: $modname:\n";
 	if (system("apt install php$NEWVERSION-$modname > /dev/null 2>&1") != 0)
 	{
