@@ -57,7 +57,7 @@ foreach my $filename (@files)
 	print "Current mod is: $modname:\n";
 	if (system("apt install php$NEWVERSION-$modname > /dev/null 2>&1") != 0)
 	{
-		print "\tMod Not found\n";
+		print "\t$NEWVERSION Mod Not found\n";
 	}
 	else
 	{
