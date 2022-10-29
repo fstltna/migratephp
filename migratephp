@@ -9,7 +9,7 @@ my $NEWVERSION = "8.1";
 my $CURPHPDIR = "/etc/apache2/mods-enabled";
 
 # Begin app
-print "updatephp version $VERSION\n";
+print "migratephp version $VERSION\n";
 print "==========================\n";
 
 print "Update current OS apps? (Yn): ";
@@ -54,5 +54,7 @@ foreach my $filename (@files)
 	my $modname = substr($filename, 0, -5);
 	next if ($modname eq "php$CURVERSION");
 	print "Current mod is: $modname\n";
+	system("apt install php$NEWVERSION-$modname");
+	print "\tMod installed\n";
 }
 exit(0);
