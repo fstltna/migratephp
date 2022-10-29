@@ -33,10 +33,17 @@ if (($myinput eq "y") || ($myinput eq "Y") || ($myinput eq ""))
 	system("apt update");
 	system("apt upgrade");
 }
+print "Switch main php mod? (Yn: ";
+$myinput = <>;
+chop($myinput);
+if (($myinput eq "y") || ($myinput eq "Y") || ($myinput eq ""))
+{
+	system("a2dismod php$CURVERSION");
+	system("a2enmod php$NEWVERSION");
+	print "Main php mod updated\n";
+}
+
 print "Beginning to update mods...\n";
-#system("a2dismod php$CURVERSION");
-#system("a2enmod php$NEWVERSION");
-print "Main php mod updated\n";
 
 # Read in file list
 opendir(DH, $CURPHPDIR);
