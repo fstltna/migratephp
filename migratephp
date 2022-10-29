@@ -53,8 +53,14 @@ foreach my $filename (@files)
 	next if ($type ne ".conf");
 	my $modname = substr($filename, 0, -5);
 	next if ($modname eq "php$CURVERSION");
-	print "Current mod is: $modname\n";
-	system("apt install php$NEWVERSION-$modname");
-	print "\tMod installed\n";
+	print "Current mod is: $modname:\n";
+	if (system("apt install php$NEWVERSION-$modname > /dev/null 2>&1") != 0)
+	{
+		print "\tMod Not found\n";
+	}
+	else
+	{
+		print "\tMod installed\n";
+	}
 }
 exit(0);
